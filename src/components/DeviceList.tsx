@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-const Row = styled.div`
+const Row = styled.div<{ isSelected: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  border: 3px solid;
+  border-color: ${(props) => (props.isSelected ? "red" : "black")};
 `;
 const Column = styled.div``;
 
-export default function DeviceList() {
+interface Props {
+  deviceId: string;
+  setSelected?: (id: string) => void;
+}
+export default function DeviceList({ deviceId, setSelected }: Props) {
   const [mics, setMics] = useState<MediaDeviceInfo[]>([]);
+
   useEffect(() => {
     function getStream() {
       return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
@@ -40,12 +47,20 @@ export default function DeviceList() {
   return (
     <>
       {mics.map((m) => (
-        <Row key={m.deviceId}>
+        <Row key={m.deviceId} isSelected={m.deviceId === deviceId}>
           <Column>{m.groupId}</Column>
           <Column>{m.label}</Column>
           <Column>{m.kind}</Column>
           <Column>{m.deviceId}</Column>
-          <button onClick={() => {}}>Set</button>
+          {setSelected && (
+            <button
+              onClick={() => {
+                setSelected(m.deviceId);
+              }}
+            >
+              Set
+            </button>
+          )}
         </Row>
       ))}
     </>

@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 import styled from "styled-components";
 import PauseSVG from "../assets/icons/pause.svg";
 import DeviceList from "../components/DeviceList";
-import Frame from "./frame";
 
 const Container = styled.div`
   display: flex;
@@ -35,14 +35,20 @@ export const Pause = styled(PauseSVG)`
   fill: palevioletred;
 `;
 const Home: NextPage = () => {
+  const [selected, setSelected] = useState("");
+
   return (
     <Container>
       <Centered>
         <Content>
-          <DeviceList />
+          <DeviceList deviceId={selected} setSelected={setSelected} />
         </Content>
         <Content>
-          <iframe src="/frame" width="100%" height="100%" />
+          <iframe
+            src={`/frame?groupId=${selected}`}
+            width="100%"
+            height="100%"
+          />
         </Content>
       </Centered>
     </Container>
