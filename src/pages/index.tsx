@@ -45,7 +45,7 @@ const Home: NextPage = () => {
         </Content>
         <Content>
           <iframe
-            src={`/frame?groupId=${selected}`}
+            src={`https://test-audio-iframe.vercel.app/frame?groupId=${selected}`}
             width="100%"
             height="100%"
           />
