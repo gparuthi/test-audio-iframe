@@ -48,6 +48,7 @@ const Home: NextPage = () => {
             src={`https://test-audio-iframe.vercel.app/frame?groupId=${selected}`}
             width="100%"
             height="100%"
+            allow="camera;microphone"
           />
         </Content>
       </Centered>
