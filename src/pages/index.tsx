@@ -41,11 +41,11 @@ const Home: NextPage = () => {
     <Container>
       <Centered>
         <Content>
-          <DeviceList deviceId={selected} setSelected={setSelected} />
+          <DeviceList selected={selected} setSelected={setSelected} />
         </Content>
         <Content>
           <iframe
-            src={`https://test-audio-iframe.vercel.app/frame?groupId=${selected}`}
+            src={`https://test-audio-iframe.vercel.app/frame?selected=${selected}`}
             width="100%"
             height="100%"
             allow="camera;microphone"

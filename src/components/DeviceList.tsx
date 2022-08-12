@@ -10,10 +10,10 @@ const Row = styled.div<{ isSelected: boolean }>`
 const Column = styled.div``;
 
 interface Props {
-  deviceId: string;
+  selected: string;
   setSelected?: (id: string) => void;
 }
-export default function DeviceList({ deviceId, setSelected }: Props) {
+export default function DeviceList({ selected, setSelected }: Props) {
   const [mics, setMics] = useState<MediaDeviceInfo[]>([]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function DeviceList({ deviceId, setSelected }: Props) {
   return (
     <>
       {mics.map((m) => (
-        <Row key={m.deviceId} isSelected={m.deviceId === deviceId}>
+        <Row key={m.deviceId} isSelected={m.label === selected}>
           <Column>{m.groupId}</Column>
           <Column>{m.label}</Column>
           <Column>{m.kind}</Column>
@@ -55,7 +55,7 @@ export default function DeviceList({ deviceId, setSelected }: Props) {
           {setSelected && (
             <button
               onClick={() => {
-                setSelected(m.deviceId);
+                setSelected(m.label);
               }}
             >
               Set
