@@ -23,7 +23,7 @@ export default function DeviceList({ selected, setSelected }: Props) {
     async function onLoad() {
       try {
         const stream = await getStream();
-        console.log("Got stream", stream);
+        console.log("Got stream", stream, stream.getAudioTracks()[0].label);
       } catch (err) {
         console.error("Issue getting mic", err);
       }
@@ -34,7 +34,7 @@ export default function DeviceList({ selected, setSelected }: Props) {
         if (deviceInfo.kind === "audioinput") {
           mics.push(deviceInfo);
           let label = deviceInfo.label || "Microphone " + mics.length;
-          console.log("Mic ", label + " " + deviceInfo.deviceId);
+          //   console.log("Mic ", label + " " + deviceInfo.deviceId);
           const option = document.createElement("option");
           option.value = deviceInfo.deviceId;
           option.text = label;
