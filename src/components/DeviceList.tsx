@@ -33,11 +33,6 @@ export default function DeviceList({ selected, setSelected }: Props) {
         let deviceInfo = deviceInfos[i];
         if (deviceInfo.kind === "audioinput") {
           mics.push(deviceInfo);
-          let label = deviceInfo.label || "Microphone " + mics.length;
-          //   console.log("Mic ", label + " " + deviceInfo.deviceId);
-          const option = document.createElement("option");
-          option.value = deviceInfo.deviceId;
-          option.text = label;
         }
       }
       setMics(mics);
